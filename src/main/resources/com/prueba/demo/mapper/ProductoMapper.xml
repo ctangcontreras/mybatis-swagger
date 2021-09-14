@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prueba.demo.mapper.ProductoMapper">
+
+	<resultMap id="resProducto" type="Producto">
+		<result property="cod_producto" 	 column="cod_producto" />
+		<result property="nombre" 			 column="nombre" />
+		<result property="precio" 		 	 column="precio" />
+	</resultMap>
+
+	<select id="getListaProducto" resultMap="resProducto">
+		SELECT 
+		cod_producto, nombre, precio
+		
+		FROM prueba.producto 
+	</select>
+	
+</mapper>
