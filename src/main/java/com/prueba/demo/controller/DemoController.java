@@ -1,5 +1,6 @@
 package com.prueba.demo.controller;
 
+import com.prueba.demo.core.model.Usuario;
 import com.prueba.demo.service.DemoService;
 
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +46,43 @@ public class DemoController {
 		
 		try {
 			return ResponseEntity.ok(demoService.getListaProducto());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "listar sucursal")
+	@RequestMapping(value = "/getListaSucursal", method = RequestMethod.GET)
+	public ResponseEntity<Object> listarSucursal() {
+		
+		try {
+			return ResponseEntity.ok(demoService.getListaSucursal());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "listar usuario")
+	@RequestMapping(value = "/getListaUsuario", method = RequestMethod.GET)
+	public ResponseEntity<Object> listarUsuario() {
+		
+		try {
+			return ResponseEntity.ok(demoService.getListaUsuario());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+
+	@ApiOperation(value = "RegistrarUsuario ")
+	@RequestMapping(value = "/getRegistrarUsuario", method = RequestMethod.POST)
+	public ResponseEntity<Object> getRegistrarUsuario(@RequestBody Usuario usuario) {
+		
+		try {
+			return ResponseEntity.ok(demoService.registrarUsuario(usuario));
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return ResponseEntity.ok(e);

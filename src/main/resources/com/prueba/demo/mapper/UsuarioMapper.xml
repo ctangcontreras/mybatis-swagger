@@ -1,0 +1,41 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prueba.demo.mapper.UsuarioMapper">
+
+	<resultMap id="resUsuario" type="Usuario">
+		<result property="codUsuario" 	    column="cod_usuario" />
+		<result property="nombre" 	        column="nombre" />
+        <result property="user" 		    column="user" />
+        <result property="password"         column="password" />
+        <result property="codSucursal"  	 column="cod_sucursal" />
+	</resultMap>
+
+	<select id="getListaUsuario" resultMap="resUsuario">
+		  
+          SELECT
+	        cod_usuario, nombre, user, password, cod_sucursal
+             FROM prueba.usuario
+             ORDER BY CONVERT(cod_usuario, SIGNED INTEGER) ASC
+	</select>
+
+	<select id="registrar" parameterType="com.prueba.demo.core.model.Usuario">
+
+	 INSERT INTO  prueba.usuario
+		(
+		cod_usuario, 
+		nombre, 
+		user, 
+		password, 
+		cod_sucursal
+		)
+	VALUES (
+		#{param.codUsuario},
+		#{param.nombre},
+		#{param.user},
+		#{param.password},
+		#{param.codSucursal}
+		 )
+	
+
+	</select>
+
+</mapper>

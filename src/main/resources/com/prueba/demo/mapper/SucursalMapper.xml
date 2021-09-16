@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prueba.demo.mapper.SucursalMapper">
+
+	<resultMap id="resSucursal" type="Sucursal">
+		<result property="codSucursal" 	 column="cod_sucursal" />
+		<result property="nombre" 			 column="nombre" />
+	</resultMap>
+
+	<select id="getListaSucursal" resultMap="resSucursal">
+		  
+		SELECT
+		cod_sucursal, nombre
+		FROM prueba.sucursal
+		ORDER BY CONVERT(cod_sucursal,SIGNED INTEGER) ASC
+	</select>
+	
+</mapper>
