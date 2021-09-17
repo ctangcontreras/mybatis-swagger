@@ -39,4 +39,10 @@
 	
 
 	</select>
+
+	<select id="contadorProductos" resultType="int">
+
+	SELECT COUNT(*) FROM prueba.producto	
+	
+	</select>
 </mapper>

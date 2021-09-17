@@ -5,6 +5,7 @@ import java.util.List;
 import com.prueba.demo.core.model.Producto;
 import com.prueba.demo.core.model.Sucursal;
 import com.prueba.demo.core.model.Usuario;
+import com.prueba.demo.dto.ListaProductoListaSucursal;
 import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
 import com.prueba.demo.service.DemoService;
@@ -211,6 +212,42 @@ public class DemoController {
 		
 		try {
 			return ResponseEntity.ok(demoService.registrarUsuarioListaSucursal(usuarioListaSucursal));
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "registrarListaProductoListaSucursal")
+	@RequestMapping(value = "/getRegistrarListaProductoListaSucursal", method = RequestMethod.POST)
+	public ResponseEntity<Object> getRegistrarListaProductoListaSucursal(@RequestBody ListaProductoListaSucursal listaProductoListaSucursal) {
+		
+		try {
+			return ResponseEntity.ok(demoService.registrarListaProductoListaSucursal(listaProductoListaSucursal));
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "contador usuarios")
+	@RequestMapping(value = "/getContadorUsuarios", method = RequestMethod.GET)
+	public ResponseEntity<Object> ContadorUsuarios() {
+		
+		try {
+			return ResponseEntity.ok(demoService.contadorUsuarios());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "contador productos")
+	@RequestMapping(value = "/getContadorProductos", method = RequestMethod.GET)
+	public ResponseEntity<Object> ContadorProductos() {
+		
+		try {
+			return ResponseEntity.ok(demoService.contadorProductos());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return ResponseEntity.ok(e);

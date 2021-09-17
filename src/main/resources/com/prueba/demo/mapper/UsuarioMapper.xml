@@ -50,4 +50,10 @@
 
 	</select>
 
+	<select id="contadorUsuarios" resultType="int">
+
+	SELECT COUNT(*) FROM prueba.usuario
+
+	</select>
+
 </mapper>

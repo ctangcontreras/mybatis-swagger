@@ -13,4 +13,5 @@ public interface ProductoMapper {
 	List<Producto> getListaProducto();
 	void registrar (@Param("param") Producto producto); 
 	void actualizar (@Param("param") Producto producto); 
+	Integer contadorProductos();
 }

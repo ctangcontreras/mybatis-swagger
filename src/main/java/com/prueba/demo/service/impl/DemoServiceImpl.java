@@ -5,6 +5,7 @@ import java.util.List;
 import com.prueba.demo.core.model.Producto;
 import com.prueba.demo.core.model.Sucursal;
 import com.prueba.demo.core.model.Usuario;
+import com.prueba.demo.dto.ListaProductoListaSucursal;
 import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
 import com.prueba.demo.mapper.ProductoMapper;
@@ -151,4 +152,32 @@ public class DemoServiceImpl implements DemoService {
 		return new Respuesta<>(true, null);
 
 	}
+
+	@Override
+	@Transactional
+	public Respuesta<?> registrarListaProductoListaSucursal(ListaProductoListaSucursal listaProductoListaSucursal) throws Exception {
+
+		for (Producto producto : listaProductoListaSucursal.getListaProducto()) {
+			productoMapper.registrar(producto);
+		}
+		for (Sucursal sucursal : listaProductoListaSucursal.getListaSucursal()) {
+			sucursalMapper.registrar(sucursal);
+		}
+		return new Respuesta<>(true, null);
+	}
+
+	@Override
+	public Respuesta<?> contadorUsuarios() throws Exception {
+		Integer contador = usuarioMapper.contadorUsuarios();
+		return new Respuesta<>(true, contador);
+	}
+
+	@Override
+	public Respuesta<?> contadorProductos() throws Exception {
+		Integer contadorProducto = productoMapper.contadorProductos();
+		return new Respuesta<>(true, contadorProducto);
+	}
+
+
+
 }
