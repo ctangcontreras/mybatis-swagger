@@ -38,4 +38,16 @@
 
 	</select>
 
+	<select id="actualizar" parameterType="com.prueba.demo.core.model.Usuario">
+
+	
+		UPDATE prueba.usuario
+		SET nombre = #{param.nombre},
+		user = #{param.user},
+		password = #{param.password},
+		cod_sucursal = #{param.codSucursal}
+		WHERE cod_usuario = #{param.codUsuario}
+
+	</select>
+
 </mapper>

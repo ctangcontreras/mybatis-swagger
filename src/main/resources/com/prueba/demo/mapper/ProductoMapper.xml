@@ -14,4 +14,29 @@
 		FROM prueba.producto 
 	</select>
 	
+	<select id="registrar" parameterType="com.prueba.demo.core.model.Producto">
+
+	 INSERT INTO  prueba.producto
+		(
+		cod_producto, 
+		nombre, 
+		precio
+		)
+	VALUES (
+		#{param.cod_producto},
+		#{param.nombre},
+		#{param.precio}
+		 )
+	
+
+	</select>
+
+	<select id="actualizar" parameterType="com.prueba.demo.core.model.Producto">
+
+	UPDATE prueba.producto
+	SET nombre = #{param.nombre}
+	WHERE cod_producto = #{param.cod_producto}	
+	
+
+	</select>
 </mapper>

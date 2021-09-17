@@ -11,4 +11,5 @@ import org.apache.ibatis.annotations.Param;
 public interface UsuarioMapper {
   List<Usuario>  getListaUsuario();
   void registrar(@Param("param") Usuario usuario);
+  void actualizar(@Param("param") Usuario usuario);
 }

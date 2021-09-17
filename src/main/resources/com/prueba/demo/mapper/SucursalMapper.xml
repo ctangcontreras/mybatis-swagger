@@ -14,4 +14,28 @@
 		ORDER BY CONVERT(cod_sucursal,SIGNED INTEGER) ASC
 	</select>
 	
+	<select id="registrar" parameterType="com.prueba.demo.core.model.Sucursal">
+
+	 INSERT INTO  prueba.sucursal
+		(
+		cod_sucursal,
+		nombre
+		)
+	VALUES (
+		#{param.codSucursal},
+		#{param.nombre}
+		 )
+	
+
+	</select>
+
+	<select id="actualizar" parameterType="com.prueba.demo.core.model.Sucursal">
+
+	 UPDATE prueba.sucursal
+		SET nombre = #{param.nombre}
+		WHERE cod_sucursal = #{param.codSucursal}
+	
+
+	</select>
+	
 </mapper>
