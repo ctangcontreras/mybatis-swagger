@@ -6,6 +6,7 @@ import java.util.List;
 import com.prueba.demo.core.model.Producto;
 import com.prueba.demo.core.model.Sucursal;
 import com.prueba.demo.core.model.Usuario;
+import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
 import com.prueba.demo.support.dto.Respuesta;
  
@@ -25,4 +26,5 @@ public interface DemoService {
 	Respuesta<?> registrarListaProducto(List<Producto>listaProducto) throws Exception;
 	Respuesta<?> registrarListaSucursal(List<Sucursal>listaSucursal) throws Exception;
 	Respuesta<?> registrarUsuarioSucursal(UsuarioSucursal usuarioSucursal) throws Exception;
+	Respuesta<?> registrarUsuarioListaSucursal(UsuarioListaSucursal usuarioListaSucursal) throws Exception;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.prueba.demo.core.model.Producto;
 import com.prueba.demo.core.model.Sucursal;
 import com.prueba.demo.core.model.Usuario;
+import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
 import com.prueba.demo.service.DemoService;
 
@@ -198,6 +199,18 @@ public class DemoController {
 		
 		try {
 			return ResponseEntity.ok(demoService.registrarUsuarioSucursal(usuarioSucursal));
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "registrarUsuarioListaSucursal")
+	@RequestMapping(value = "/getRegistrarUsuarioListaSucursal", method = RequestMethod.POST)
+	public ResponseEntity<Object> getRegistrarUsuarioListaSucursal(@RequestBody UsuarioListaSucursal usuarioListaSucursal) {
+		
+		try {
+			return ResponseEntity.ok(demoService.registrarUsuarioListaSucursal(usuarioListaSucursal));
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return ResponseEntity.ok(e);

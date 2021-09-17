@@ -5,6 +5,7 @@ import java.util.List;
 import com.prueba.demo.core.model.Producto;
 import com.prueba.demo.core.model.Sucursal;
 import com.prueba.demo.core.model.Usuario;
+import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
 import com.prueba.demo.mapper.ProductoMapper;
 import com.prueba.demo.mapper.SucursalMapper;
@@ -133,6 +134,19 @@ public class DemoServiceImpl implements DemoService {
 	public Respuesta<?> registrarUsuarioSucursal(UsuarioSucursal usuarioSucursal) throws Exception {
 		usuarioMapper.registrar(usuarioSucursal.getUsuario());
 		sucursalMapper.registrar(usuarioSucursal.getSucursal());
+
+		return new Respuesta<>(true, null);
+
+	}
+
+	@Override
+	@Transactional
+	public Respuesta<?> registrarUsuarioListaSucursal(UsuarioListaSucursal usuarioListaSucursal) throws Exception {
+		usuarioMapper.registrar(usuarioListaSucursal.getUsuario());
+		for (Sucursal sucursal : usuarioListaSucursal.getListaSucursal()) {
+			sucursalMapper.registrar(sucursal);
+			
+		}
 
 		return new Respuesta<>(true, null);
 
