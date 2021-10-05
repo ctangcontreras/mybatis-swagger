@@ -8,6 +8,7 @@ import com.prueba.demo.core.model.Usuario;
 import com.prueba.demo.dto.ListaProductoListaSucursal;
 import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
+import com.prueba.demo.dto.UsuarioSucursalDto;
 import com.prueba.demo.service.DemoService;
 
 import org.slf4j.Logger;
@@ -253,4 +254,53 @@ public class DemoController {
 			return ResponseEntity.ok(e);
 		}
 	}
+
+	@ApiOperation(value = "Returns Hello World")
+	@RequestMapping(value = "/listarVehiculo", method = RequestMethod.GET)
+	public ResponseEntity<Object> listarVehiculo() {
+		
+		try {
+			return ResponseEntity.ok(demoService.getListaVehiculo());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "listar celular")
+	@RequestMapping(value = "/listarCelular", method = RequestMethod.GET)
+	public ResponseEntity<Object> listarCelular() {
+		
+		try {
+			return ResponseEntity.ok(demoService.getListaCelular2());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "Maximousuario")
+	@RequestMapping(value = "/getMaximoUsuario", method = RequestMethod.GET)
+	public ResponseEntity<Object> getMaximoUsuario() {
+		
+		try {
+			return ResponseEntity.ok(demoService.maximoUsuario());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
+	@ApiOperation(value = "registrarUsuarioSucursalDto")
+	@RequestMapping(value = "/registrarUsuarioSucursalDto", method = RequestMethod.POST)
+	public ResponseEntity<Object> registrarUsuarioSucursalDto(@RequestBody UsuarioSucursalDto usuarioSucursalDto) {
+		
+		try {
+			return ResponseEntity.ok(demoService.registrarUsuarioSucursalDto(usuarioSucursalDto));
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity.ok(e);
+		}
+	}
+
 }

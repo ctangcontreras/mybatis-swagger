@@ -2,15 +2,20 @@ package com.prueba.demo.service.impl;
 
 import java.util.List;
 
+import com.prueba.demo.core.model.Celular;
 import com.prueba.demo.core.model.Producto;
 import com.prueba.demo.core.model.Sucursal;
 import com.prueba.demo.core.model.Usuario;
+import com.prueba.demo.core.model.Vehiculo;
 import com.prueba.demo.dto.ListaProductoListaSucursal;
 import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
+import com.prueba.demo.dto.UsuarioSucursalDto;
+import com.prueba.demo.mapper.CelularMapper;
 import com.prueba.demo.mapper.ProductoMapper;
 import com.prueba.demo.mapper.SucursalMapper;
 import com.prueba.demo.mapper.UsuarioMapper;
+import com.prueba.demo.mapper.VehiculoMapper;
 import com.prueba.demo.service.DemoService;
 import com.prueba.demo.support.dto.Respuesta;
 
@@ -30,10 +35,17 @@ public class DemoServiceImpl implements DemoService {
 	private ProductoMapper productoMapper;
 
 	@Autowired
+	private VehiculoMapper vehiculoMapper;
+ 
+
+	@Autowired
 	private SucursalMapper sucursalMapper;
 
 	@Autowired
 	private UsuarioMapper usuarioMapper; 
+
+	@Autowired
+	private CelularMapper celularMapper; 
 	
 	@Override
 	public Respuesta<?> getListaProducto() throws Exception {
@@ -132,6 +144,7 @@ public class DemoServiceImpl implements DemoService {
 	}
 
 	@Override
+	@Transactional
 	public Respuesta<?> registrarUsuarioSucursal(UsuarioSucursal usuarioSucursal) throws Exception {
 		usuarioMapper.registrar(usuarioSucursal.getUsuario());
 		sucursalMapper.registrar(usuarioSucursal.getSucursal());
@@ -178,6 +191,44 @@ public class DemoServiceImpl implements DemoService {
 		return new Respuesta<>(true, contadorProducto);
 	}
 
+	@Override
+	public Respuesta<?> getListaVehiculo() throws Exception {
+		List<Vehiculo> lista = vehiculoMapper.getListaVehiculo();
+		return new Respuesta<>(true, lista);
+	}
+
+	@Override
+	public Respuesta<?> getListaCelular2() throws Exception {
+		List<Celular> lista = celularMapper.getListaCelular();
+		return new Respuesta<>(true, lista);
+	}
+	@Override
+	public Respuesta<?> maximoUsuario() throws Exception {
+		Integer maximoUsuario = usuarioMapper.maximoUsuario();
+		return new Respuesta<>(true, maximoUsuario);
+	}
+
+	@Override
+	@Transactional
+	public Respuesta<?> registrarUsuarioSucursalDto(UsuarioSucursalDto usuarioSucursalDto) throws Exception {
 
 
+		Usuario usuarioRegistrar = new Usuario();
+		usuarioRegistrar.setCodUsuario(usuarioSucursalDto.getUsuarioDto().getCodUsuario());
+		usuarioRegistrar.setNombre(usuarioSucursalDto.getUsuarioDto().getNombre());
+		usuarioRegistrar.setUser(usuarioSucursalDto.getUsuarioDto().getUser());
+		usuarioRegistrar.setPassword(usuarioSucursalDto.getUsuarioDto().getPassword());
+		usuarioRegistrar.setCodSucursal(usuarioSucursalDto.getUsuarioDto().getCodSucursal());
+
+		Sucursal sucursalRegistrar = new Sucursal();
+		sucursalRegistrar.setCodSucursal(usuarioSucursalDto.getSucursalDto().getCodSucursal());
+		sucursalRegistrar.setNombre(usuarioSucursalDto.getSucursalDto().getNombre());
+
+		sucursalMapper.registrar(sucursalRegistrar);
+		usuarioMapper.registrar(usuarioRegistrar);
+		
+		return new Respuesta<>(true, null);
+
+	}
+ 
 }

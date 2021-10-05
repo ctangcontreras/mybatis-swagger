@@ -9,6 +9,7 @@ import com.prueba.demo.core.model.Usuario;
 import com.prueba.demo.dto.ListaProductoListaSucursal;
 import com.prueba.demo.dto.UsuarioListaSucursal;
 import com.prueba.demo.dto.UsuarioSucursal;
+import com.prueba.demo.dto.UsuarioSucursalDto;
 import com.prueba.demo.support.dto.Respuesta;
  
 
@@ -31,4 +32,8 @@ public interface DemoService {
 	Respuesta<?> registrarListaProductoListaSucursal(ListaProductoListaSucursal listaProductoListaSucursal) throws Exception;
 	Respuesta<?> contadorUsuarios() throws Exception;
 	Respuesta<?> contadorProductos() throws Exception;
+	Respuesta<?> getListaVehiculo() throws Exception;
+	Respuesta<?> getListaCelular2() throws Exception;
+ 	Respuesta<?> maximoUsuario() throws Exception;
+	Respuesta<?> registrarUsuarioSucursalDto(UsuarioSucursalDto usuarioSucursalDto) throws Exception;
 }

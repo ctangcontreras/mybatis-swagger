@@ -13,4 +13,6 @@ public interface UsuarioMapper {
   void registrar(@Param("param") Usuario usuario);
   void actualizar(@Param("param") Usuario usuario);
   Integer contadorUsuarios();
+  Integer maximoUsuario();
+
 }

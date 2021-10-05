@@ -56,4 +56,8 @@
 
 	</select>
 
+	<select id="maximoUsuario" resultType="int">
+
+	 SELECT MAX(cod_usuario) AS maximoUsuario FROM Prueba.usuario
+	</select>
 </mapper>
